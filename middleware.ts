@@ -4,10 +4,7 @@ const isPublicRoute = createRouteMatcher([
   "/",
   "/sign-in(.*)",
   "/sign-up(.*)",
-<<<<<<< HEAD
   "/sso-callback(.*)",
-=======
->>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
   "/api/webhook(.*)",
   "/api/webhooks(.*)",
   "/payments/success(.*)",

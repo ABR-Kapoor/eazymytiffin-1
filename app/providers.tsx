@@ -7,10 +7,7 @@ import { useUserStore } from "@/store/userStore";
 import { useSubscriptionStore } from "@/store/subscriptionStore";
 import { useOrderStore } from "@/store/orderStore";
 import { useNotificationStore } from "@/store/notificationStore";
-<<<<<<< HEAD
 import { ConfirmProvider } from "@/components/ConfirmProvider";
-=======
->>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
 
 export function AppProvider({ children }: { children: React.ReactNode }) {
   const { user: clerkUser, isLoaded } = useUser();
@@ -185,9 +182,5 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-<<<<<<< HEAD
   return <ConfirmProvider>{children}</ConfirmProvider>;
-=======
-  return <>{children}</>;
->>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
 }

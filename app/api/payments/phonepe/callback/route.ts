@@ -48,11 +48,7 @@ export async function POST(req: NextRequest) {
 
       await supabaseAdmin.from("notifications").insert([{
         user_id: payment.user_id,
-<<<<<<< HEAD
         title: "Payment Failed ",
-=======
-        title: "Payment Failed ❌",
->>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
         body: "Your payment could not be processed. Please try again.",
         type: "payment",
         channel: "in_app",

@@ -2,14 +2,10 @@
 
 import { useEffect, useState, useRef } from "react";
 import { supabase } from "@/lib/supabase";
-<<<<<<< HEAD
 import { Search, RefreshCw, Pause, Play, X, Plus, ChevronDown, Check, Users, ArrowRight, Sun, Moon } from "lucide-react";
 import Link from "next/link";
 import { CustomSelect } from "@/components/CustomSelect";
 import { useConfirm } from "@/components/ConfirmProvider";
-=======
-import { Search, RefreshCw, Pause, Play, X, Plus, ChevronDown, Check, Users } from "lucide-react";
->>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
 
 type Sub = {
   id: string; user_id: string; plan_id: string | null; category: string; meal_type: string;
@@ -33,7 +29,6 @@ export default function AdminSubscriptionsPage() {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const [actionLoading, setActionLoading] = useState<string | null>(null);
-<<<<<<< HEAD
   const [toast, setToast] = useState<{ msg: string; type: "success" | "error" } | null>(null);
   const [showExtendModal, setShowExtendModal] = useState<string | null>(null);
   const [extendDays, setExtendDays] = useState(7);
@@ -47,14 +42,6 @@ export default function AdminSubscriptionsPage() {
   const [createForm, setCreateForm] = useState({ userId: "", planId: "", category: "veg", mealType: "both", startsAt: new Date().toISOString().split("T")[0] });
   const [creating, setCreating] = useState(false);
 
-=======
-  const [selected, setSelected] = useState<string[]>([]);
-  const [toast, setToast] = useState<{ msg: string; type: "success" | "error" } | null>(null);
-  const [showExtendModal, setShowExtendModal] = useState<string | null>(null);
-  const [extendDays, setExtendDays] = useState(7);
-  const channelRef = useRef<any>(null);
-
->>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
   const showToast = (msg: string, type: "success" | "error" = "success") => {
     setToast({ msg, type });
     setTimeout(() => setToast(null), 3000);
@@ -64,11 +51,7 @@ export default function AdminSubscriptionsPage() {
     setLoading(true);
     const { data } = await supabase
       .from("subscriptions")
-<<<<<<< HEAD
       .select("*, user:users!subscriptions_user_id_fkey(full_name, phone, email)")
-=======
-      .select("*, user:users(full_name, phone, email)")
->>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
       .order("created_at", { ascending: false });
     setSubs((data as any) || []);
 
@@ -81,7 +64,6 @@ export default function AdminSubscriptionsPage() {
     setLoading(false);
   };
 
-<<<<<<< HEAD
   const fetchCreateOptions = async () => {
     const { data: cData } = await supabase.from("users").select("id, full_name, phone").eq("role", "customer");
     setCustomers(cData || []);
@@ -89,8 +71,6 @@ export default function AdminSubscriptionsPage() {
     setPlans(pData || []);
   };
 
-=======
->>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
   useEffect(() => {
     fetchData();
     channelRef.current = supabase
@@ -106,10 +86,6 @@ export default function AdminSubscriptionsPage() {
       let body: any = { subscriptionId: subId };
       if (action === "extend") body = { ...body, days: extendDays };
 
-<<<<<<< HEAD
-=======
-      // Admin actions bypass cutoff via supabaseAdmin route
->>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
       const endpoint = action === "extend"
         ? "/api/admin/subscriptions/extend"
         : `/api/admin/subscriptions/${action}`;
@@ -127,7 +103,6 @@ export default function AdminSubscriptionsPage() {
 
   const handleAssign = async (subId: string, boyId: string) => {
     const { error } = await supabase.from("subscriptions").update({ assigned_delivery_boy: boyId }).eq("id", subId);
-<<<<<<< HEAD
     if (!error) showToast("Delivery boy assigned successfully!");
     else showToast("Assignment failed", "error");
   };
@@ -153,12 +128,6 @@ export default function AdminSubscriptionsPage() {
     finally { setCreating(false); }
   };
 
-=======
-    if (!error) showToast("Delivery boy assigned!");
-    else showToast("Assignment failed", "error");
-  };
-
->>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
   const filtered = subs.filter((s) => {
     if (statusFilter !== "all" && s.status !== statusFilter) return false;
     if (search) {
@@ -171,7 +140,6 @@ export default function AdminSubscriptionsPage() {
   return (
     <div>
       {toast && (
-<<<<<<< HEAD
         <div style={{ position: "fixed", top: "20px", right: "20px", zIndex: 500, background: toast.type === "success" ? "#1B5E30" : "#E8392A", color: "white", borderRadius: "12px", padding: "12px 20px", fontSize: "13px", fontWeight: 600, boxShadow: "0 8px 24px rgba(0,0,0,0.2)" }}>
           {toast.msg}
         </div>
@@ -261,10 +229,6 @@ export default function AdminSubscriptionsPage() {
               </button>
             </div>
           </div>
-=======
-        <div style={{ position: "fixed", top: "20px", right: "20px", zIndex: 200, background: toast.type === "success" ? "#1B5E30" : "#E8392A", color: "white", borderRadius: "12px", padding: "12px 20px", fontSize: "13px", fontWeight: 600, boxShadow: "0 8px 24px rgba(0,0,0,0.2)" }}>
-          {toast.type === "success" ? "✅ " : "❌ "}{toast.msg}
->>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
         </div>
       )}
 
@@ -283,7 +247,6 @@ export default function AdminSubscriptionsPage() {
         </div>
       )}
 
-<<<<<<< HEAD
       {/* Page Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 animate-fade-up">
         <div>
@@ -352,53 +315,10 @@ export default function AdminSubscriptionsPage() {
                     <p className="text-[13px] m-0">Try changing filters or create a new one</p>
                   </td>
                 </tr>
-=======
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "20px" }}>
-        <div>
-          <h1 style={{ fontWeight: 900, fontSize: "24px", color: "#1A1A1A", margin: 0 }}>Subscriptions</h1>
-          <p style={{ color: "#9CA3AF", fontSize: "13px", margin: "4px 0 0" }}>{filtered.length} of {subs.length} plans</p>
-        </div>
-        <button onClick={fetchData} style={{ display: "flex", alignItems: "center", gap: "6px", background: "white", border: "1px solid rgba(212,184,150,0.3)", borderRadius: "10px", padding: "8px 14px", fontSize: "12px", fontWeight: 700, cursor: "pointer" }}>
-          <RefreshCw size={14} /> Refresh
-        </button>
-      </div>
-
-      {/* Filters */}
-      <div style={{ display: "flex", gap: "10px", marginBottom: "16px", flexWrap: "wrap" }}>
-        <div style={{ position: "relative", flex: "1", minWidth: "200px" }}>
-          <Search size={15} style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", color: "#9CA3AF" }} />
-          <input placeholder="Search by name, phone, ID…" value={search} onChange={(e) => setSearch(e.target.value)}
-            style={{ width: "100%", padding: "9px 12px 9px 36px", borderRadius: "10px", border: "1px solid rgba(212,184,150,0.3)", background: "white", fontSize: "13px", outline: "none", boxSizing: "border-box" }} />
-        </div>
-        {["all", "active", "paused", "expired", "cancelled"].map((s) => (
-          <button key={s} onClick={() => setStatusFilter(s)} style={{ padding: "8px 16px", borderRadius: "10px", fontSize: "12px", fontWeight: 700, cursor: "pointer", textTransform: "capitalize", border: "1px solid", background: statusFilter === s ? "#1A1A1A" : "white", color: statusFilter === s ? "white" : "#4A3A2A", borderColor: statusFilter === s ? "#1A1A1A" : "rgba(212,184,150,0.3)" }}>
-            {s}
-          </button>
-        ))}
-      </div>
-
-      {/* Table */}
-      <div style={{ background: "white", borderRadius: "16px", border: "1px solid rgba(212,184,150,0.15)", overflow: "hidden", boxShadow: "0 1px 6px rgba(0,0,0,0.06)" }}>
-        <div style={{ overflowX: "auto" }}>
-          <table style={{ width: "100%", borderCollapse: "collapse" }}>
-            <thead>
-              <tr style={{ background: "#F8FAFC", borderBottom: "1px solid rgba(212,184,150,0.15)" }}>
-                {["Customer", "Plan", "Remaining", "Status", "Starts", "Delivery Boy", "Actions"].map((h) => (
-                  <th key={h} style={{ padding: "12px 14px", textAlign: "left", fontSize: "11px", fontWeight: 800, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.5px", whiteSpace: "nowrap" }}>{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {loading ? (
-                <tr><td colSpan={7} style={{ textAlign: "center", padding: "40px", color: "#9CA3AF" }}>Loading…</td></tr>
-              ) : filtered.length === 0 ? (
-                <tr><td colSpan={7} style={{ textAlign: "center", padding: "40px", color: "#9CA3AF" }}>No subscriptions found</td></tr>
->>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
               ) : filtered.map((sub) => {
                 const sc = STATUS_CHIP[sub.status] || STATUS_CHIP.cancelled;
                 const isProcessing = actionLoading?.startsWith(sub.id);
                 return (
-<<<<<<< HEAD
                   <tr key={sub.id} className="even:bg-gray-100 hover:bg-gray-200 transition-colors group">
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center gap-3">
@@ -461,55 +381,10 @@ export default function AdminSubscriptionsPage() {
                           <button onClick={() => handleAction("pause", sub.id)} disabled={isProcessing}
                             title="Pause" className="px-2 py-1.5 rounded-lg bg-[#D97706]/10 text-[#D97706] hover:bg-[#D97706] hover:text-white border-none cursor-pointer text-[12px] font-bold transition-colors">
                             <Pause size={14} />
-=======
-                  <tr key={sub.id} style={{ borderBottom: "1px solid rgba(212,184,150,0.1)", transition: "background 150ms" }}
-                    onMouseEnter={(e) => (e.currentTarget.style.background = "#FAFAFA")}
-                    onMouseLeave={(e) => (e.currentTarget.style.background = "")}>
-                    <td style={{ padding: "12px 14px" }}>
-                      <p style={{ fontWeight: 700, fontSize: "13px", color: "#1A1A1A", margin: 0 }}>{sub.user?.full_name || "—"}</p>
-                      <p style={{ fontSize: "11px", color: "#9CA3AF", margin: "2px 0 0" }}>{sub.user?.phone || "—"}</p>
-                    </td>
-                    <td style={{ padding: "12px 14px" }}>
-                      <span style={{ fontSize: "12px", fontWeight: 700, color: sub.category === "veg" ? "#1B5E30" : "#E8392A" }}>
-                        {sub.category === "veg" ? "🥗" : "🍗"} {sub.meal_type === "both" ? "L+D" : sub.meal_type}
-                      </span>
-                    </td>
-                    <td style={{ padding: "12px 14px" }}>
-                      <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                        <div style={{ width: "60px", height: "6px", borderRadius: "999px", background: "#F3F4F6", overflow: "hidden" }}>
-                          <div style={{ height: "100%", width: `${Math.max(4, (sub.remaining_days / sub.total_days) * 100)}%`, background: sub.remaining_days <= 3 ? "#EF4444" : sub.remaining_days <= 7 ? "#F59E0B" : "#1B5E30", borderRadius: "999px" }} />
-                        </div>
-                        <span style={{ fontSize: "12px", fontWeight: 700, color: "#4A3A2A" }}>{sub.remaining_days}d</span>
-                      </div>
-                    </td>
-                    <td style={{ padding: "12px 14px" }}>
-                      <span style={{ display: "inline-block", fontSize: "11px", fontWeight: 700, padding: "4px 10px", borderRadius: "999px", background: sc.bg, color: sc.text, textTransform: "capitalize" }}>{sub.status}</span>
-                    </td>
-                    <td style={{ padding: "12px 14px", fontSize: "12px", color: "#6B7280" }}>
-                      {new Date(sub.starts_at).toLocaleDateString("en-IN")}
-                    </td>
-                    <td style={{ padding: "12px 14px" }}>
-                      <select
-                        defaultValue={sub.assigned_delivery_boy || ""}
-                        onChange={(e) => handleAssign(sub.id, e.target.value)}
-                        style={{ fontSize: "11px", padding: "5px 8px", borderRadius: "7px", border: "1px solid rgba(212,184,150,0.3)", background: "white", cursor: "pointer", outline: "none" }}
-                      >
-                        <option value="">Unassigned</option>
-                        {deliveryBoys.map((b) => <option key={b.id} value={b.id}>{b.full_name}</option>)}
-                      </select>
-                    </td>
-                    <td style={{ padding: "12px 14px" }}>
-                      <div style={{ display: "flex", gap: "4px" }}>
-                        {sub.status === "active" && (
-                          <button onClick={() => handleAction("pause", sub.id)} disabled={isProcessing}
-                            title="Pause" style={{ padding: "5px 8px", borderRadius: "6px", background: "rgba(217,119,6,0.1)", color: "#D97706", border: "none", cursor: "pointer", fontSize: "11px", fontWeight: 700 }}>
-                            <Pause size={12} />
->>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
                           </button>
                         )}
                         {sub.status === "paused" && (
                           <button onClick={() => handleAction("resume", sub.id)} disabled={isProcessing}
-<<<<<<< HEAD
                             title="Resume" className="px-2 py-1.5 rounded-lg bg-[#1B5E30]/10 text-[#1B5E30] hover:bg-[#1B5E30] hover:text-white border-none cursor-pointer text-[12px] font-bold transition-colors">
                             <Play size={14} />
                           </button>
@@ -529,18 +404,6 @@ export default function AdminSubscriptionsPage() {
                           }} disabled={isProcessing}
                             title="Cancel" className="px-2 py-1.5 rounded-lg bg-[#EF4444]/10 text-[#EF4444] hover:bg-[#EF4444] hover:text-white border-none cursor-pointer text-[12px] font-bold transition-colors">
                             <X size={14} />
-=======
-                            title="Resume" style={{ padding: "5px 8px", borderRadius: "6px", background: "rgba(27,94,48,0.1)", color: "#1B5E30", border: "none", cursor: "pointer", fontSize: "11px", fontWeight: 700 }}>
-                            <Play size={12} />
-                          </button>
-                        )}
-                        <button onClick={() => setShowExtendModal(sub.id)}
-                          title="Extend" style={{ padding: "5px 8px", borderRadius: "6px", background: "rgba(99,102,241,0.1)", color: "#6366F1", border: "none", cursor: "pointer", fontSize: "10px", fontWeight: 700 }}>+d</button>
-                        {["active", "paused"].includes(sub.status) && (
-                          <button onClick={() => { if (confirm("Cancel this subscription?")) handleAction("cancel", sub.id); }} disabled={isProcessing}
-                            title="Cancel" style={{ padding: "5px 8px", borderRadius: "6px", background: "rgba(239,68,68,0.1)", color: "#EF4444", border: "none", cursor: "pointer", fontSize: "11px", fontWeight: 700 }}>
-                            <X size={12} />
->>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
                           </button>
                         )}
                       </div>

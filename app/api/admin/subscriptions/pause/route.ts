@@ -32,16 +32,11 @@ export async function POST(req: NextRequest) {
     // Notification
     if (data?.user_id) {
       await supabaseAdmin.from("notifications").insert([{
-<<<<<<< HEAD
         user_id: data.user_id, title: "Subscription Paused by Admin ",
-=======
-        user_id: data.user_id, title: "Subscription Paused by Admin ⏸️",
->>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
         body: "Your subscription has been paused by the admin.", type: "subscription", channel: "in_app",
       }]);
     }
 
-<<<<<<< HEAD
     // Admin log
     const { data: adminUser } = await supabaseAdmin.from("users").select("id").eq("clerk_user_id", userId).single();
     if (adminUser) {
@@ -51,8 +46,6 @@ export async function POST(req: NextRequest) {
       }]);
     }
 
-=======
->>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
     return NextResponse.json({ success: true });
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });
