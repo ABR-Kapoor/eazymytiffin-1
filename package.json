@@ -11,7 +11,10 @@
   "dependencies": {
     "@clerk/nextjs": "^6.0.0",
     "@supabase/supabase-js": "^2.43.0",
+<<<<<<< HEAD
     "clsx": "^2.1.1",
+=======
+>>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
     "lottie-react": "^2.4.1",
     "lucide-react": "^0.468.0",
     "maplibre-gl": "^5.24.0",
@@ -19,7 +22,10 @@
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "svix": "^1.94.0",
+<<<<<<< HEAD
     "tailwind-merge": "^3.6.0",
+=======
+>>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
     "zustand": "^5.0.13"
   },
   "devDependencies": {

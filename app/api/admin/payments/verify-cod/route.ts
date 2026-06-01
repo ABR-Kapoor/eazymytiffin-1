@@ -24,7 +24,11 @@ export async function POST(req: NextRequest) {
 
     // Notify customer
     await supabaseAdmin.from("notifications").insert([{
+<<<<<<< HEAD
       user_id: order.user_id, title: "COD Payment Confirmed ",
+=======
+      user_id: order.user_id, title: "COD Payment Confirmed ✅",
+>>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
       body: `Cash payment of ₹${order.total_amount} has been verified by admin.`, type: "payment", channel: "in_app",
     }]);
 

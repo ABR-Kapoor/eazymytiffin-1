@@ -87,7 +87,11 @@ export default function WeeklyMenu() {
         const bannerImage = lunchCycle?.menus?.image_url || fallbackImages[index];
 
         return {
+<<<<<<< HEAD
           day: dayName,
+=======
+          day: isSunday ? "Sunday ⭐" : dayName,
+>>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
           color: colors[index],
           image: bannerImage,
           special: isSunday,

@@ -24,6 +24,7 @@ export async function POST(req: NextRequest) {
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
     if (data?.user_id) {
       await supabaseAdmin.from("notifications").insert([{
+<<<<<<< HEAD
         user_id: data.user_id, title: "Subscription Resumed ",
         body: "Your subscription has been resumed by the admin. Fresh meals coming soon!", type: "subscription", channel: "in_app",
       }]);
@@ -38,6 +39,12 @@ export async function POST(req: NextRequest) {
       }]);
     }
     
+=======
+        user_id: data.user_id, title: "Subscription Resumed ▶️",
+        body: "Your subscription has been resumed by the admin. Fresh meals coming soon!", type: "subscription", channel: "in_app",
+      }]);
+    }
+>>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
     return NextResponse.json({ success: true });
   } catch (err: any) { return NextResponse.json({ error: err.message }, { status: 500 }); }
 }

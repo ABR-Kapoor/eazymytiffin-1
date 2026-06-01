@@ -4,7 +4,10 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Suspense } from "react";
 import Link from "next/link";
+<<<<<<< HEAD
 import { ShieldCheck, Lock, Check } from "lucide-react";
+=======
+>>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
 
 function MockPaymentContent() {
   const params = useSearchParams();
@@ -56,7 +59,11 @@ function MockPaymentContent() {
         {/* PhonePe header */}
         <div style={{ textAlign: "center", marginBottom: "28px" }}>
           <div style={{ width: "64px", height: "64px", borderRadius: "16px", background: "linear-gradient(135deg, #5F259F, #8B3FC4)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 12px", fontSize: "28px" }}>
+<<<<<<< HEAD
             <ShieldCheck size={32} color="white" />
+=======
+            💜
+>>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
           </div>
           <h1 style={{ color: "white", fontWeight: 800, fontSize: "22px", margin: 0 }}>PhonePe</h1>
           <p style={{ color: "#9CA3AF", fontSize: "12px", margin: "4px 0 0" }}>Development Simulator</p>
@@ -66,7 +73,11 @@ function MockPaymentContent() {
         <div style={{ background: "#1A1A1A", borderRadius: "20px", padding: "24px", border: "1px solid rgba(255,255,255,0.08)" }}>
           <div style={{ borderBottom: "1px solid rgba(255,255,255,0.08)", paddingBottom: "16px", marginBottom: "16px" }}>
             <p style={{ color: "#9CA3AF", fontSize: "11px", fontWeight: 700, textTransform: "uppercase", margin: "0 0 4px" }}>Paying to</p>
+<<<<<<< HEAD
             <p style={{ color: "white", fontWeight: 800, fontSize: "16px", margin: 0 }}>EazyGrace</p>
+=======
+            <p style={{ color: "white", fontWeight: 800, fontSize: "16px", margin: 0 }}>EazyMyTiffin</p>
+>>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
             <p style={{ color: "#6B7280", fontSize: "11px", margin: "2px 0 0" }}>{planTitle}</p>
           </div>
 
@@ -82,9 +93,13 @@ function MockPaymentContent() {
 
           {countdown !== null ? (
             <div style={{ textAlign: "center", padding: "20px 0" }}>
+<<<<<<< HEAD
               <div style={{ width: "56px", height: "56px", borderRadius: "50%", background: "rgba(34,197,94,0.15)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 12px", fontSize: "24px" }}>
                 <Check size={32} color="#22C55E" />
               </div>
+=======
+              <div style={{ width: "56px", height: "56px", borderRadius: "50%", background: "rgba(34,197,94,0.15)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 12px", fontSize: "24px" }}>✅</div>
+>>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
               <p style={{ color: "#22C55E", fontWeight: 800, fontSize: "16px", margin: "0 0 4px" }}>Payment Successful!</p>
               <p style={{ color: "#6B7280", fontSize: "13px", margin: 0 }}>Redirecting in {countdown}s…</p>
             </div>
@@ -98,7 +113,11 @@ function MockPaymentContent() {
                 {processing ? (
                   <><span style={{ display: "inline-block", width: "16px", height: "16px", border: "2px solid rgba(255,255,255,0.3)", borderTopColor: "white", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} /> Processing…</>
                 ) : (
+<<<<<<< HEAD
                   "Pay ₹" + amount
+=======
+                  "✅ Pay ₹" + amount
+>>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
                 )}
               </button>
               <button
@@ -106,14 +125,23 @@ function MockPaymentContent() {
                 disabled={processing}
                 style={{ padding: "12px", borderRadius: "12px", background: "rgba(239,68,68,0.1)", color: "#EF4444", border: "1px solid rgba(239,68,68,0.2)", fontWeight: 700, fontSize: "13px", cursor: processing ? "not-allowed" : "pointer", opacity: processing ? 0.6 : 1 }}
               >
+<<<<<<< HEAD
                 Simulate Failure
+=======
+                ❌ Simulate Failure
+>>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
               </button>
             </div>
           )}
         </div>
 
+<<<<<<< HEAD
         <p style={{ textAlign: "center", color: "#374151", fontSize: "11px", marginTop: "16px", display: "flex", alignItems: "center", justifyContent: "center", gap: "4px" }}>
           <Lock size={12} /> This is a development simulator. No real payments are processed.
+=======
+        <p style={{ textAlign: "center", color: "#374151", fontSize: "11px", marginTop: "16px" }}>
+          🔒 This is a development simulator. No real payments are processed.
+>>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
         </p>
       </div>
 

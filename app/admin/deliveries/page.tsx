@@ -2,8 +2,12 @@
 
 import { useEffect, useState, useRef } from "react";
 import { supabase } from "@/lib/supabase";
+<<<<<<< HEAD
 import { RefreshCw, Truck, Bike, Sun, Moon, Clock, Camera, MapPin, List, Activity, CheckCircle, AlertCircle } from "lucide-react";
 import { CustomSelect } from "@/components/CustomSelect";
+=======
+import { RefreshCw, Truck } from "lucide-react";
+>>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
 
 type Assignment = {
   id: string; order_id: string; delivery_boy_id: string; status: string; eta: string | null; proof_image: string | null; created_at: string;
@@ -37,7 +41,11 @@ export default function AdminDeliveriesPage() {
       .select(`id, order_id, delivery_boy_id, status, eta, proof_image, created_at,
         delivery_boy:users!delivery_assignments_delivery_boy_id_fkey(full_name, phone),
         order:food_orders(total_amount, time_slot,
+<<<<<<< HEAD
           user:users!food_orders_user_id_fkey(full_name, phone),
+=======
+          user:users(full_name, phone),
+>>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
           address:addresses(area, city, google_map_link)
         )`)
       .order("created_at", { ascending: false })
@@ -81,6 +89,7 @@ export default function AdminDeliveriesPage() {
 
   return (
     <div>
+<<<<<<< HEAD
       {toast && <div className={`fixed top-5 right-5 z-[200] text-white rounded-xl py-3 px-5 text-[13px] font-bold shadow-lg animate-fade-up ${toast.type === "success" ? "bg-[#1B5E30]" : "bg-[#E8392A]"}`}>{toast.msg}</div>}
 
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 animate-fade-up">
@@ -95,10 +104,22 @@ export default function AdminDeliveriesPage() {
         </div>
         <button onClick={fetchData} className="btn-glare flex items-center justify-center gap-2 bg-white border border-[rgba(212,184,150,0.3)] hover:border-[#E8392A] hover:text-[#E8392A] text-[#4A3A2A] rounded-xl px-5 py-2.5 text-[13px] font-bold shadow-sm transition-all h-fit w-fit">
           <RefreshCw size={16} /> Refresh
+=======
+      {toast && <div style={{ position: "fixed", top: "20px", right: "20px", zIndex: 200, background: toast.type === "success" ? "#1B5E30" : "#E8392A", color: "white", borderRadius: "12px", padding: "12px 20px", fontSize: "13px", fontWeight: 600 }}>{toast.type === "success" ? "✅ " : "❌ "}{toast.msg}</div>}
+
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "20px" }}>
+        <div>
+          <h1 style={{ fontWeight: 900, fontSize: "24px", color: "#1A1A1A", margin: 0 }}>Delivery Management</h1>
+          <p style={{ color: "#9CA3AF", fontSize: "13px", margin: "4px 0 0" }}>Monitor and assign deliveries</p>
+        </div>
+        <button onClick={fetchData} style={{ display: "flex", alignItems: "center", gap: "6px", background: "white", border: "1px solid rgba(212,184,150,0.3)", borderRadius: "10px", padding: "8px 14px", fontSize: "12px", fontWeight: 700, cursor: "pointer" }}>
+          <RefreshCw size={14} /> Refresh
+>>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
         </button>
       </div>
 
       {/* Stats row */}
+<<<<<<< HEAD
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 animate-fade-up" style={{ animationDelay: "0.1s" }}>
         {[
           { label: "Total", value: stats.total, color: "#6366F1", icon: <List size={22} /> },
@@ -120,21 +141,40 @@ export default function AdminDeliveriesPage() {
               <p className="font-bold text-3xl text-[#121212] mb-1 tracking-tight">{s.value}</p>
               <p className="text-xs font-bold text-[#6B7280] uppercase tracking-wider m-0">{s.label}</p>
             </div>
+=======
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "12px", marginBottom: "20px" }}>
+        {[
+          { label: "Total", value: stats.total, color: "#1A1A1A" },
+          { label: "Active", value: stats.active, color: "#0EA5E9" },
+          { label: "Delivered", value: stats.delivered, color: "#1B5E30" },
+          { label: "Delayed", value: stats.delayed, color: "#E8392A" },
+        ].map((s) => (
+          <div key={s.label} style={{ background: "white", borderRadius: "14px", padding: "14px 16px", border: "1px solid rgba(212,184,150,0.15)", textAlign: "center" }}>
+            <p style={{ fontWeight: 900, fontSize: "28px", color: s.color, margin: "0 0 4px" }}>{s.value}</p>
+            <p style={{ fontSize: "11px", color: "#9CA3AF", fontWeight: 700, margin: 0 }}>{s.label}</p>
+>>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
           </div>
         ))}
       </div>
 
       {/* Filter */}
+<<<<<<< HEAD
       <div className="flex gap-2 mb-6 animate-fade-up" style={{ animationDelay: "0.15s" }}>
         {["active", "all"].map((f) => (
           <button key={f} onClick={() => setStatusFilter(f)} 
             className={`px-5 py-2.5 rounded-xl text-[13px] font-bold cursor-pointer capitalize border transition-all ${statusFilter === f ? "bg-[#1A1A1A] text-white border-[#1A1A1A] shadow-md" : "bg-white text-[#6B7280] border-[rgba(212,184,150,0.3)] hover:bg-gray-50"}`}>
+=======
+      <div style={{ display: "flex", gap: "8px", marginBottom: "16px" }}>
+        {["active", "all"].map((f) => (
+          <button key={f} onClick={() => setStatusFilter(f)} style={{ padding: "7px 16px", borderRadius: "9px", fontSize: "12px", fontWeight: 700, cursor: "pointer", textTransform: "capitalize", border: "1px solid", background: statusFilter === f ? "#1A1A1A" : "white", color: statusFilter === f ? "white" : "#4A3A2A", borderColor: statusFilter === f ? "#1A1A1A" : "rgba(212,184,150,0.3)" }}>
+>>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
             {f === "active" ? "Active Only" : "All Today"}
           </button>
         ))}
       </div>
 
       {loading ? (
+<<<<<<< HEAD
         <div className="text-center py-20">
           <div className="w-10 h-10 rounded-full border-4 border-[#E8392A]/20 border-t-[#E8392A] animate-spin mx-auto mb-4" />
           <p className="text-[#9CA3AF] font-medium">Loading deliveries…</p>
@@ -198,11 +238,57 @@ export default function AdminDeliveriesPage() {
                       <a href={a.proof_image} target="_blank" rel="noreferrer" className="text-[11px] font-extrabold bg-[#0EA5E9]/10 text-[#0EA5E9] border border-[#0EA5E9]/20 rounded-full px-2.5 py-1 flex items-center gap-1 no-underline shadow-sm hover:bg-[#0EA5E9] hover:text-white transition-colors">
                         <Camera size={12} /> Proof
                       </a>
+=======
+        <div style={{ textAlign: "center", padding: "60px 0" }}>
+          <div style={{ width: "36px", height: "36px", borderRadius: "50%", border: "3px solid rgba(232,57,42,0.2)", borderTopColor: "#E8392A", animation: "spin 0.8s linear infinite", margin: "0 auto 16px" }} />
+          <p style={{ color: "#9CA3AF" }}>Loading deliveries…</p>
+        </div>
+      ) : assignments.length === 0 ? (
+        <div style={{ textAlign: "center", padding: "60px 0", background: "white", borderRadius: "16px" }}>
+          <Truck size={40} style={{ color: "#E5E7EB", margin: "0 auto 12px" }} />
+          <p style={{ fontWeight: 700, color: "#1A1A1A" }}>No deliveries found</p>
+        </div>
+      ) : (
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: "14px" }}>
+          {assignments.map((a) => {
+            const sc = STATUS_COLORS[a.status] || STATUS_COLORS.failed;
+            return (
+              <div key={a.id} style={{ background: "white", borderRadius: "16px", border: `1px solid ${sc.bg}`, boxShadow: "0 2px 8px rgba(0,0,0,0.06)", overflow: "hidden" }}>
+                <div style={{ padding: "12px 14px", borderBottom: "1px solid rgba(212,184,150,0.1)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <div>
+                    <p style={{ fontWeight: 800, fontSize: "13px", color: "#1A1A1A", margin: 0 }}>
+                      🛵 {a.delivery_boy?.full_name || "Unassigned"}
+                    </p>
+                    <p style={{ fontSize: "10px", color: "#9CA3AF", margin: "2px 0 0" }}>{a.delivery_boy?.phone || "—"}</p>
+                  </div>
+                  <span style={{ fontSize: "11px", fontWeight: 700, padding: "4px 10px", borderRadius: "999px", background: sc.bg, color: sc.text, textTransform: "capitalize", whiteSpace: "nowrap" }}>
+                    {a.status.replace(/_/g, " ")}
+                  </span>
+                </div>
+                <div style={{ padding: "12px 14px" }}>
+                  <p style={{ fontWeight: 700, fontSize: "13px", color: "#1A1A1A", margin: "0 0 2px" }}>{a.order?.user?.full_name || "—"}</p>
+                  <p style={{ fontSize: "11px", color: "#9CA3AF", margin: "0 0 8px" }}>
+                    {a.order?.address?.area}, {a.order?.address?.city}
+                    {a.order?.address?.google_map_link && (
+                      <a href={a.order.address.google_map_link} target="_blank" rel="noreferrer" style={{ marginLeft: "6px", color: "#0EA5E9", fontWeight: 700, textDecoration: "none" }}>
+                        📍 Map
+                      </a>
+                    )}
+                  </p>
+                  <div style={{ display: "flex", gap: "6px", alignItems: "center", flexWrap: "wrap" }}>
+                    <span style={{ fontSize: "11px", fontWeight: 700, color: "#6B7280" }}>
+                      {a.order?.time_slot === "lunch" ? "🌤️ Lunch" : "🌙 Dinner"} · ₹{a.order?.total_amount}
+                    </span>
+                    {a.eta && <span style={{ fontSize: "11px", fontWeight: 700, color: a.eta === "Delayed" ? "#E8392A" : "#D97706" }}>⏱ {a.eta}</span>}
+                    {a.proof_image && (
+                      <a href={a.proof_image} target="_blank" rel="noreferrer" style={{ fontSize: "11px", fontWeight: 700, color: "#0EA5E9", textDecoration: "none" }}>📸 Proof</a>
+>>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
                     )}
                   </div>
 
                   {/* Reassign */}
                   {a.status !== "delivered" && (
+<<<<<<< HEAD
                     <div className="mt-auto pt-2">
                       <CustomSelect 
                         value={a.delivery_boy_id || ""} 
@@ -212,6 +298,14 @@ export default function AdminDeliveriesPage() {
                           ...deliveryBoys.map(b => ({ value: b.id, label: b.full_name }))
                         ]}
                       />
+=======
+                    <div style={{ marginTop: "10px" }}>
+                      <select defaultValue={a.delivery_boy_id || ""} onChange={(e) => handleAssign(a.order_id, e.target.value)}
+                        style={{ width: "100%", padding: "7px 10px", borderRadius: "8px", border: "1px solid rgba(212,184,150,0.3)", fontSize: "12px", outline: "none", fontWeight: 600 }}>
+                        <option value="">— Reassign —</option>
+                        {deliveryBoys.map((b) => <option key={b.id} value={b.id}>{b.full_name}</option>)}
+                      </select>
+>>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
                     </div>
                   )}
                 </div>
@@ -220,6 +314,10 @@ export default function AdminDeliveriesPage() {
           })}
         </div>
       )}
+<<<<<<< HEAD
+=======
+      <style>{`@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }`}</style>
+>>>>>>> 21ee6eafa5645584d057b626d86c88c24d1d1434
     </div>
   );
 }
