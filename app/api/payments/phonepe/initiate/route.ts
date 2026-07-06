@@ -104,13 +104,43 @@ export async function POST(req: NextRequest) {
 
     // 3. Extract request body params
     const body = await req.json();
-    const { planId } = body;
-    if (!planId) {
+    const { planId, orderId, amount } = body;
+    if (!planId && !orderId) {
       return NextResponse.json(
-        { success: false, message: "Missing planId parameter." },
+        { success: false, message: "Missing planId or orderId parameter." },
         { status: 400 }
       );
     }
+
+    // --- FOOD ORDER LOGIC ---
+    if (orderId) {
+      const transactionId = `TX_${Date.now()}_${crypto.randomBytes(3).toString("hex").toUpperCase()}`;
+      
+      // Update the existing payment record for this food order with the new transactionId
+      const { error: paymentUpdateError } = await supabaseAdmin
+        .from("payments")
+        .update({ transaction_id: transactionId })
+        .eq("order_id", orderId)
+        .eq("payment_status", "pending");
+
+      if (paymentUpdateError) {
+        console.error("Payment update error for food order:", paymentUpdateError);
+        return NextResponse.json(
+          { success: false, message: "Failed to initialize checkout transaction for food order." },
+          { status: 500 }
+        );
+      }
+
+      const redirectUrl = `/payments/phonepe-mock?transactionId=${transactionId}&amount=${amount}&userId=${userData.id}&orderId=${orderId}&planTitle=${encodeURIComponent("Food Order")}`;
+      
+      return NextResponse.json({
+        success: true,
+        redirectUrl,
+        transactionId,
+        orderId,
+      });
+    }
+    // --- END FOOD ORDER LOGIC ---
 
     const planIdAliases: Record<string, string> = {
       "veg-w": "veg-weekly",

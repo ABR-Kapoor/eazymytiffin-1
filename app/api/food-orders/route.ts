@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
         status: "pending",
         subtotal: subtotal || totalAmount,
         total_amount: totalAmount,
-        time_slot: timeSlot === "instant" ? null : timeSlot,
+        time_slot: ["lunch", "dinner", "both"].includes(timeSlot?.toLowerCase()) ? timeSlot.toLowerCase() : null,
         notes: notes || null,
       }])
       .select()
