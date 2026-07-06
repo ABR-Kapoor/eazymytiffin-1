@@ -117,7 +117,7 @@ export async function POST(req: NextRequest) {
       const transactionId = `TX_${Date.now()}_${crypto.randomBytes(3).toString("hex").toUpperCase()}`;
       
       // Update the existing payment record for this food order with the new transactionId
-      const { error: paymentUpdateError } = await supabaseAdmin
+      const { error: paymentUpdateError } = await supabaseAdmin!
         .from("payments")
         .update({ transaction_id: transactionId })
         .eq("order_id", orderId)
