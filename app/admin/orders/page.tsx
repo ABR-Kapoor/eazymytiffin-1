@@ -197,7 +197,7 @@ export default function AdminOrdersPage() {
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-[13px] font-semibold text-[#6B7280] capitalize">
-                        {order.time_slot === "lunch" ? <span className="inline-flex items-center gap-1.5"><Sun size={14}/> Lunch</span> : <span className="inline-flex items-center gap-1.5"><Moon size={14}/> Dinner</span>}
+                        {order.time_slot === "lunch" ? <span className="inline-flex items-center gap-1.5"><Sun size={14}/> Lunch</span> : order.time_slot === "dinner" ? <span className="inline-flex items-center gap-1.5"><Moon size={14}/> Dinner</span> : <span className="inline-flex items-center gap-1.5 text-orange-500">⚡ Instant</span>}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className="font-extrabold text-[15px] text-[#1A1A1A]">₹{order.total_amount}</span>

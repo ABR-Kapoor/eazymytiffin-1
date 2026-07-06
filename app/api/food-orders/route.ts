@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
         status: "pending",
         subtotal: subtotal || totalAmount,
         total_amount: totalAmount,
-        time_slot: timeSlot,
+        time_slot: timeSlot === "instant" ? null : timeSlot,
         notes: notes || null,
       }])
       .select()

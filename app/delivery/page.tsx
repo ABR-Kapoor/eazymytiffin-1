@@ -179,7 +179,7 @@ export default function DeliveryDashboard() {
                   <div>
                     <p style={{ color: "white", fontWeight: 800, fontSize: "14px", margin: 0 }}>{a.order?.user?.full_name || "—"}</p>
                     <p style={{ color: "#94A3B8", fontSize: "11px", margin: "2px 0 0", display: "flex", alignItems: "center", gap: "4px" }}>
-                      {a.order?.time_slot === "lunch" ? <><Sun size={10} /> Lunch</> : <><Moon size={10} /> Dinner</>} · ₹{a.order?.total_amount}
+                      {a.order?.time_slot === "lunch" ? <><Sun size={10} /> Lunch</> : a.order?.time_slot === "dinner" ? <><Moon size={10} /> Dinner</> : <><span style={{ color: "#F97316" }}>⚡</span> Instant</>} · ₹{a.order?.total_amount}
                     </p>
                   </div>
                   <span style={{ display: "inline-block", fontSize: "11px", fontWeight: 700, padding: "4px 12px", borderRadius: "999px", background: "rgba(14,165,233,0.2)", color: "#0EA5E9", textTransform: "capitalize" }}>
@@ -264,7 +264,7 @@ export default function DeliveryDashboard() {
                 <CheckCircle size={24} style={{ color: "#1B5E30", flexShrink: 0 }} />
                 <div style={{ flex: 1 }}>
                   <p style={{ fontWeight: 700, fontSize: "13px", color: "#1A1A1A", margin: 0 }}>{a.order?.user?.full_name || "—"}</p>
-                  <p style={{ fontSize: "11px", color: "#9CA3AF", margin: "2px 0 0", display: "flex", alignItems: "center", gap: "4px" }}>{a.order?.time_slot === "lunch" ? <><Sun size={10} /> Lunch</> : <><Moon size={10} /> Dinner</>} · ₹{a.order?.total_amount}</p>
+                  <p style={{ fontSize: "11px", color: "#9CA3AF", margin: "2px 0 0", display: "flex", alignItems: "center", gap: "4px" }}>{a.order?.time_slot === "lunch" ? <><Sun size={10} /> Lunch</> : a.order?.time_slot === "dinner" ? <><Moon size={10} /> Dinner</> : <><span style={{ color: "#F97316" }}>⚡</span> Instant</>} · ₹{a.order?.total_amount}</p>
                 </div>
                 {a.proof_image && (
                   <a href={a.proof_image} target="_blank" rel="noreferrer">

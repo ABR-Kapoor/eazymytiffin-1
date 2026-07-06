@@ -186,8 +186,8 @@ export default function AdminDeliveriesPage() {
                   
                   <div className="flex flex-wrap gap-2 items-center mb-4">
                     <span className="text-[11px] font-extrabold bg-white shadow-sm border border-black/5 rounded-full px-2.5 py-1 flex items-center gap-1.5 text-[#1A1A1A]">
-                      {a.order?.time_slot === "lunch" ? <Sun size={12} className="text-[#F59E0B]" /> : <Moon size={12} className="text-[#6366F1]" />} 
-                      {a.order?.time_slot === "lunch" ? "Lunch" : "Dinner"} · ₹{a.order?.total_amount}
+                      {a.order?.time_slot === "lunch" ? <Sun size={12} className="text-[#F59E0B]" /> : a.order?.time_slot === "dinner" ? <Moon size={12} className="text-[#6366F1]" /> : <span className="text-orange-500">⚡</span>} 
+                      {a.order?.time_slot === "lunch" ? "Lunch" : a.order?.time_slot === "dinner" ? "Dinner" : "Instant"} · ₹{a.order?.total_amount}
                     </span>
                     {a.eta && (
                       <span className={`text-[11px] font-extrabold rounded-full px-2.5 py-1 flex items-center gap-1 shadow-sm border ${a.eta === "Delayed" ? "bg-[#E8392A]/10 text-[#E8392A] border-[#E8392A]/20" : "bg-[#D97706]/10 text-[#D97706] border-[#D97706]/20"}`}>
